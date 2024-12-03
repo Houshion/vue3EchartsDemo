@@ -1,19 +1,20 @@
 <template>
   <div class="echarts-box">
     <div
-      id="myEcharts"
+      :id="chartsId"
       class="myEcharts"
       :style="`height: ${chartHeight}`"
     ></div>
   </div>
 </template>
-  <script setup>
+  <script lang='ts' setup>
 import * as echarts from "echarts";
 import { onMounted, onUnmounted, defineEmits, defineProps } from "vue";
 
 let myEcharts = echarts;
 
 onMounted(() => {
+  console.log("chartsId", props.chartsId);
   initChart();
 });
 
@@ -21,7 +22,7 @@ onUnmounted(() => {
   myEcharts.dispose();
 });
 
-defineProps({
+const props = defineProps({
   chartHeight: {
     type: String,
     required: true,
@@ -30,13 +31,17 @@ defineProps({
     type: Object,
     required: true,
   },
+  chartsId: {
+    type: String,
+    required: true,
+  },
 });
 
 let initChart = () => {
   let chart = myEcharts.init(
-    document.getElementById("myEcharts", "purple-passion")
+    document.getElementById(props.chartsId, "purple-passion")
   );
-//   option && chart.setOption(option);
+  props.option && chart.setOption(props.option);
 };
 </script>
   <style lang="scss">

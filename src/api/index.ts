@@ -15,3 +15,12 @@ export const getDataList = (params: any) => {
         return Promise.resolve(res);
     })
 }
+//获取列表数据
+export const getLBDataList = (params: any) => {
+    return post('/api/getLBData', params).then((res: any) => {
+        if (res.code === 200) {
+            localStorage.setItem('token', res.data.token);
+        }
+        return Promise.resolve(res);
+    })
+}

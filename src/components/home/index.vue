@@ -254,7 +254,7 @@ const selectRow = (row:any)=>{
           :msgLabel="msgInfoData2.labelName"
           :msgData="msgInfoData2.data"
         ></MsgInfo>
-      </div>
+      </div> 
       <div class="right">
         <Echarts></Echarts>
       </div>
