@@ -2,7 +2,7 @@
 import * as echarts from "echarts";
 import { onMounted, onBeforeMount, ref, nextTick } from "vue";
 import { getEchartsData } from "~/api";
-let scsOption;
+let blsOption;
 let myEcharts = echarts;
 let legendData = [],
   xData = [],
@@ -15,7 +15,7 @@ onMounted(() => {
 let getData = async () => {
   await nextTick();
   const { data } = await getEchartsData();
-  data.charts3.yData.forEach((item) => {
+  data.charts5.yData.forEach((item) => {
     legendData.push(item.name);
     let y = [];
     let x = [];
@@ -30,10 +30,7 @@ let getData = async () => {
 };
 
 let callData = () => {
-scsOption = {
-  title: {
-    text: "每日计划数",
-  },
+blsOption = {
   tooltip: {
     trigger: "axis",
     axisPointer: {
@@ -46,7 +43,24 @@ scsOption = {
   grid: {
     bottom: 30,
     left: 30,
-    right: 30,
+    right: 80,
+  },
+  //   toolbox: {
+  //     feature: {
+  //       dataView: { show: true, readOnly: false },
+  //       restore: { show: true },
+  //       saveAsImage: { show: true },
+  //     },
+  //   },
+  legend: {
+    icon: "circle",
+    left: 5,
+    top: 5,
+    textStyle: {
+        color:"#fff"
+    },
+    // data: ["生产数", "生产总时间"],
+    data: legendData,
   },
   xAxis: [
     {
@@ -54,6 +68,16 @@ scsOption = {
       data: xData[0],
       axisPointer: {
         type: "shadow",
+      },
+      axisLine: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
+      axisTick: {
+        lineStyle: {
+            color: "#fff",
+        }
       },
     },
   ],
@@ -64,6 +88,16 @@ scsOption = {
     },
     {
       type: "value",
+      axisLine: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
+      axisTick: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
     },
   ],
   
@@ -71,7 +105,7 @@ scsOption = {
   series: [
     {
       type: "bar",
-      name: "生产数",
+      name: "不良数",
       // tooltip: {
       //   valueFormatter: function (value) {
       //     return value + " ml";
@@ -91,7 +125,7 @@ scsOption = {
     },
     {
       type: "line",
-      name: "生产总时间",
+      name: "不良率",
       yAxisIndex: 1,
       //   tooltip: {
       //     valueFormatter: function (value) {
@@ -106,14 +140,14 @@ setEcharts();
 }
 
 let setEcharts = () => {
-  let chart = myEcharts.init(document.getElementById("scs", "purple-passion"));
-  scsOption && chart.setOption(scsOption);
+  let chart = myEcharts.init(document.getElementById("bls", "purple-passion"));
+  blsOption && chart.setOption(blsOption);
 };
 </script>
 <template>
   <BaseEcharts
-    chartsId="scs"
-    :option="scsOption"
-    chartHeight="400px"
+    chartsId="bls"
+    :option="blsOption"
+    chartHeight="200px"
   ></BaseEcharts>
 </template>

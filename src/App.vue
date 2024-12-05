@@ -30,4 +30,18 @@ import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 .flex {
   display: flex;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 </style>

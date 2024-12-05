@@ -31,9 +31,6 @@ let getData = async () => {
 
 let callData = () => {
 scsOption = {
-  title: {
-    text: "每日计划数",
-  },
   tooltip: {
     trigger: "axis",
     axisPointer: {
@@ -48,12 +45,39 @@ scsOption = {
     left: 30,
     right: 30,
   },
+  //   toolbox: {
+  //     feature: {
+  //       dataView: { show: true, readOnly: false },
+  //       restore: { show: true },
+  //       saveAsImage: { show: true },
+  //     },
+  //   },
+  legend: {
+    icon: "circle",
+    left: 5,
+    top: 5,
+    textStyle: {
+        color:"#fff"
+    },
+    // data: ["生产数", "生产总时间"],
+    data: legendData,
+  },
   xAxis: [
     {
       type: "category",
       data: xData[0],
       axisPointer: {
         type: "shadow",
+      },
+      axisLine: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
+      axisTick: {
+        lineStyle: {
+            color: "#fff",
+        }
       },
     },
   ],
@@ -64,6 +88,16 @@ scsOption = {
     },
     {
       type: "value",
+      axisLine: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
+      axisTick: {
+        lineStyle: {
+            color: "#fff",
+        }
+      },
     },
   ],
   
@@ -114,6 +148,6 @@ let setEcharts = () => {
   <BaseEcharts
     chartsId="scs"
     :option="scsOption"
-    chartHeight="400px"
+    chartHeight="200px"
   ></BaseEcharts>
 </template>

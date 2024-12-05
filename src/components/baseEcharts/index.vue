@@ -19,7 +19,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  myEcharts.dispose();
+  // myEcharts.dispose();
 });
 
 const props = defineProps({
@@ -41,7 +41,8 @@ let initChart = () => {
   let chart = myEcharts.init(
     document.getElementById(props.chartsId, "purple-passion")
   );
-  props.option && chart.setOption(props.option);
+  props.option && props.option && chart.setOption(props.option);
+
 };
 </script>
   <style lang="scss">
